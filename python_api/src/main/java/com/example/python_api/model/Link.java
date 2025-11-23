@@ -1,5 +1,6 @@
 package com.example.python_api.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
+@Entity
 public class Link {
+    @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
     private int imdbId;
     private int tmdbId;

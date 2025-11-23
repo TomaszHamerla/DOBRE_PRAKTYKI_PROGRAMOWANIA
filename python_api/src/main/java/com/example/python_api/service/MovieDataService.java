@@ -4,6 +4,10 @@ import com.example.python_api.model.Link;
 import com.example.python_api.model.Movie;
 import com.example.python_api.model.Rating;
 import com.example.python_api.model.Tag;
+import com.example.python_api.repository.LinkRepository;
+import com.example.python_api.repository.MovieRepository;
+import com.example.python_api.repository.RatingRepository;
+import com.example.python_api.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,43 +17,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieDataService {
 
-    private final CsvService csvService;
+   // private final CsvService csvService;
+
+    private final LinkRepository linkRepository;
+    private final MovieRepository movieRepository;
+    private final RatingRepository ratingRepository;
+    private final TagRepository tagRepository;
 
     public List<Movie> getMovies() {
-        return csvService.loadCsv("movies.csv", parts ->
-                new Movie(
-                        Integer.parseInt(parts[0]),
-                        parts[1],
-                        parts[2]
-                ), 1);
+        return movieRepository.findAll();
     }
 
     public List<Link> getLinks() {
-        return csvService.loadCsv("links.csv", parts ->
-                new Link(
-                        Integer.parseInt(parts[0]),
-                        Integer.parseInt(parts[1]),
-                        Integer.parseInt(parts[2])
-                ), 1);
+        return linkRepository.findAll();
     }
 
     public List<Rating> getRatings() {
-        return csvService.loadCsv("ratings.csv", parts ->
-                new Rating(
-                        Integer.parseInt(parts[0]),
-                        Integer.parseInt(parts[1]),
-                        Double.parseDouble(parts[2]),
-                        Long.parseLong(parts[3])
-                ), 1);
+        return ratingRepository.findAll();
     }
 
     public List<Tag> getTags() {
-        return csvService.loadCsv("tags.csv", parts ->
-                new Tag(
-                        Integer.parseInt(parts[0]),
-                        Integer.parseInt(parts[1]),
-                        parts[2],
-                        Long.parseLong(parts[3])
-                ), 1);
+        return tagRepository.findAll();
     }
 }
