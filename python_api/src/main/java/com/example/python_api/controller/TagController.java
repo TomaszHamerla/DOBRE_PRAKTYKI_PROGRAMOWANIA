@@ -1,6 +1,5 @@
 package com.example.python_api.controller;
 
-import com.example.python_api.model.Rating;
 import com.example.python_api.model.Tag;
 import com.example.python_api.service.MovieDataService;
 import lombok.RequiredArgsConstructor;
