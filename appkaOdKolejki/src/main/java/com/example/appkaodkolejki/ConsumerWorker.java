@@ -1,6 +1,6 @@
 package com.example.appkaodkolejki;
 
-import com.example.appkaodkolejki.service.FileQueueService;
+import com.example.appkaodkolejki.service.DbQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ConsumerWorker {
 
-    private final FileQueueService fileQueueService;
+    private final DbQueueService dbQueueService;
 
     @Async
     public void startConsumerLoop(String consumerName) {
@@ -17,16 +17,17 @@ public class ConsumerWorker {
 
         while (true)
             try {
-                String jobId = fileQueueService.claimNextJob();
+                String jobId = dbQueueService.claimNextJob();
 
                 if (jobId != null) {
                     System.out.println(consumerName + ": Pobrał zadanie " + jobId + ". Praca...");
 
                     Thread.sleep(30000);
 
-                    fileQueueService.markJobAsDone(jobId);
+                    dbQueueService.markJobAsDone(jobId);
                     System.out.println(consumerName + ": Zakończył zadanie " + jobId + " (DONE)");
                 } else {
+                    System.out.println(consumerName + ": Brak zadań do przetworzenia. Odpoczynek...");
                     Thread.sleep(5000);
                 }
 

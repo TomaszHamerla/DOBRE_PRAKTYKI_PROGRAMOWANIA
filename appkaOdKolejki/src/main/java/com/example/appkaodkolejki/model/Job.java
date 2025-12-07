@@ -1,13 +1,24 @@
 package com.example.appkaodkolejki.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Job {
+
+    @Id
     private String id;
+
+    @Enumerated(EnumType.STRING)
     private JobStatus status;
 }
