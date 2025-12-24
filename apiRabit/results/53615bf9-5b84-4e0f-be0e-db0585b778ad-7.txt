@@ -1,0 +1,4 @@
+Raport analizy
+---------------------------
+ID Zadania: 53615bf9-5b84-4e0f-be0e-db0585b778ad
+Wykryto osób: 7
