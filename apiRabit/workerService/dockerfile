@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+COPY target/*.jar app.jar
+COPY yolov3.cfg .
+COPY yolov3.weights .
+
+RUN mkdir -p /app/data
+
+CMD ["java", "-jar", "app.jar"]

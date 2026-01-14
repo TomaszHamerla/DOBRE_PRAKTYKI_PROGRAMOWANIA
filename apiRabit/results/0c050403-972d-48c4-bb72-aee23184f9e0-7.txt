@@ -1,0 +1,4 @@
+Raport analizy
+---------------------------
+ID Zadania: 0c050403-972d-48c4-bb72-aee23184f9e0
+Wykryto osób: 7

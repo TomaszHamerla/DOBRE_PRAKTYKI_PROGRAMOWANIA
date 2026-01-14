@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  worker:
+    build: .
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - RABBIT_HOST=host.docker.internal
+      - RABBIT_PORT=5672
+    volumes:
+      - ../results:/app/data
